@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "612603196155",
+    "project_id": "soft-78919",
+    "storage_bucket": "soft-78919.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612603196155:android:82b47dc47a05607ebcb65e",
+        "android_client_info": {
+          "package_name": "com.example.softbenz_infosys"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJgBWB5Bg-9Ou6DNC0tRORtiU7uVaaZyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
