@@ -1,5 +1,5 @@
 import 'package:softbenz_infosys/configs/extensions.dart';
-import 'package:softbenz_infosys/controller/controller.dart';
+import 'package:softbenz_infosys/controller/cart_controller.dart';
 
 import '../../../controller/send_notification.dart';
 
@@ -79,7 +79,7 @@ class _BottomBarState extends State<BottomBar> {
               );
             },
             child: Container(
-              color: const Color(0xffddbea0),
+              color: AppColors.cream,
               child: Center(
                 child: Text(
                   'Add To Cart',

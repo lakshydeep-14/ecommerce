@@ -19,6 +19,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
+              enableInfiniteScroll: false,
               enlargeCenterPage: true,
               initialPage: 0,
               onPageChanged: (index, reason) {
@@ -29,6 +30,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
               viewportFraction: 1,
               height: context.deviceHeight * 0.5),
           items: [
+            //apiController.data.value.image![0].path.toString(),
             'https://assets.mspimages.in/gear/wp-content/uploads/2022/06/Realme-C30-Blue-MySmartPrice.jpeg',
             'https://meladigitalbazaar.s3.amazonaws.com/product_images/16659007108383741.jpg',
             'https://image01.realme.net/general/20220922/1663816701222.jpg.webp',

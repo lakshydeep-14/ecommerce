@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:softbenz_infosys/configs/extensions.dart';
+
+import '../pages/detail_page.dart';
 
 class Stocks extends StatefulWidget {
   const Stocks({super.key});
@@ -12,25 +13,31 @@ class _StocksState extends State<Stocks> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        tileBox(Icons.store, '100 in Stocks'),
+        Obx(() => tileBox(Icons.store,
+            '${apiController.result.value.variantDetail!.stock} in Stocks',
+            extra: '')),
         Container(
-          height: 60,
+          height: 100,
           width: 1,
           color: AppColors.grey.shade300,
         ),
-        tileBox(Icons.delivery_dining_outlined, '7 Days Delivery'),
+        tileBox(Icons.delivery_dining_outlined, '7 Days Delivery',
+            extra: 'COD Available'),
         Container(
-          height: 60,
+          height: 100,
           width: 1,
           color: AppColors.grey.shade300,
         ),
-        tileBox(Icons.sell, 'XYZ Store'),
+        tileBox(Icons.sell,
+            apiController.data.value.vendorDetail!.companyName ?? '',
+            extra: apiController.data.value.vendorDetail!.companyAddress),
       ],
     );
   }
 
-  Widget tileBox(IconData icon, String label) {
+  Widget tileBox(IconData icon, String label, {String? extra}) {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,7 +50,14 @@ class _StocksState extends State<Stocks> {
           Text(
             label,
             textAlign: TextAlign.center,
-          )
+            style: context.text.titleMedium,
+          ),
+          if (extra != null)
+            Text(
+              extra,
+              textAlign: TextAlign.center,
+              style: context.text.titleSmall!.copyWith(color: AppColors.grey),
+            ),
         ],
       ),
     );

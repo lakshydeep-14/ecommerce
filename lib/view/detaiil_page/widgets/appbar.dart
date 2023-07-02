@@ -1,10 +1,11 @@
 import '../../../configs/extensions.dart';
-import '../../../controller/controller.dart';
+import '../../../controller/cart_controller.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final double height;
 
-  CustomAppBar({
+  const CustomAppBar({
+    super.key,
     this.height = 50,
   });
 

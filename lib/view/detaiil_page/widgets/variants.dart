@@ -1,4 +1,5 @@
 import 'package:softbenz_infosys/configs/extensions.dart';
+import 'package:softbenz_infosys/view/detaiil_page/pages/detail_page.dart';
 import 'package:softbenz_infosys/view/detaiil_page/widgets/widgets.dart';
 
 class DisplayVariant extends StatefulWidget {
@@ -22,60 +23,124 @@ class _DisplayVariantState extends State<DisplayVariant> {
         const SizedBox(
           height: 10,
         ),
-        const Variants(variantTypes: VariantTypes.color),
+        colorVar(),
         const Divider(
           thickness: 0.2,
         ),
-        const Variants(variantTypes: VariantTypes.ram),
+        ramVar(),
         const Divider(
           thickness: 0.2,
         ),
-        const Variants(variantTypes: VariantTypes.rom),
-        DividerWid()
+        romVar(),
+        const DividerWid()
       ],
     );
   }
-}
 
-enum VariantTypes { ram, rom, color }
-
-class Variants extends StatefulWidget {
-  final VariantTypes variantTypes;
-  const Variants({super.key, required this.variantTypes});
-
-  @override
-  State<Variants> createState() => _VariantsState();
-}
-
-class _VariantsState extends State<Variants> {
-  @override
-  Widget build(BuildContext context) {
-    return variant();
-  }
-
-  Widget variant() {
-    if (widget.variantTypes == VariantTypes.color) {
-      return variantTile(Icons.color_lens_outlined, 'Color', 'Blue');
-    } else if (widget.variantTypes == VariantTypes.rom) {
-      return variantTile(Icons.storage_outlined, 'RAM', '6 GB');
-    } else {
-      return variantTile(Icons.storage_outlined, 'ROM', '5 GB');
-    }
-  }
-
-  Widget variantTile(IconData iconData, String label, String data) {
+  Widget romVar() {
     return Row(
       children: [
-        Icon(
-          iconData,
+        const Icon(
+          Icons.storage_outlined,
           color: AppColors.black,
         ),
         const SizedBox(
           width: 5,
         ),
-        Text('$label: '),
-        Text(data),
+        const Text('ROM: '),
+        ...apiController.getROMvariants().map((e) => GestureDetector(
+              onTap: () {
+                apiController.selectedVariants.value.rom = e;
+                apiController.selectedroms.value = e;
+                apiController.getFinalProduct();
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                    color: apiController.selectedroms.value == e
+                        ? AppColors.cream
+                        : AppColors.white,
+                    border: Border.all(color: AppColors.black)),
+                child: Text(e),
+              ),
+            ))
       ],
+    );
+  }
+
+  Widget ramVar() {
+    return Obx(
+      () => Row(
+        children: [
+          const Icon(
+            Icons.storage_outlined,
+            color: AppColors.black,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          const Text('RAM: '),
+          ...apiController.getRAMvariants().map((e) => GestureDetector(
+                onTap: () {
+                  apiController.selectedVariants.value.ram = e;
+                  apiController.selectedrams.value = e;
+
+                  apiController.getFinalProduct();
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                      color: e == apiController.selectedrams.value.toString()
+                          ? AppColors.cream
+                          : AppColors.white,
+                      border: Border.all(color: AppColors.black)),
+                  child: Text(e),
+                ),
+              ))
+        ],
+      ),
+    );
+  }
+
+  Widget colorVar() {
+    return Obx(
+      () => Row(
+        children: [
+          const Icon(
+            Icons.color_lens_outlined,
+            color: AppColors.black,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          const Text('Color: '),
+          ...apiController.getColorVariants().map(
+                (e) => GestureDetector(
+                  onTap: () {
+                    apiController.selectedVariants.value.color = e;
+                    apiController.selectedcolor.value = e;
+
+                    apiController.getFinalProduct();
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 5),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                        color: apiController.selectedcolor.value == e
+                            ? AppColors.cream
+                            : AppColors.white,
+                        border: Border.all(color: AppColors.black)),
+                    child: Text(e),
+                  ),
+                ),
+              )
+        ],
+      ),
     );
   }
 }

@@ -8,7 +8,7 @@ class DividerWid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      margin: EdgeInsets.symmetric(vertical: 15),
+      margin: const EdgeInsets.symmetric(vertical: 15),
       width: double.infinity,
       color: AppColors.grey.withOpacity(0.15),
     );

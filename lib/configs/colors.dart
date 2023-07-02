@@ -8,4 +8,5 @@ class AppColors {
   static const greyLight = Color(0xffeeeeee);
   static const grey = Colors.grey;
   static const background = Color(0xff0f1320);
+  static const cream = Color(0xffddbea0);
 }

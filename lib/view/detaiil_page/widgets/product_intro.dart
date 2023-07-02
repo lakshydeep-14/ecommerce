@@ -46,10 +46,24 @@ class _ProductIntroState extends State<ProductIntro> {
               )
             ],
           ),
+          Obx(
+            () => Text(
+              '${apiController.selectedcolor.value} Color, RAM ${apiController.selectedrams.value} | ROM ${apiController.selectedroms.value}',
+              style: context.text.titleSmall!
+                  .copyWith(fontWeight: FontWeight.bold),
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
           Text(
-            'Color, RAM, ROM',
+            apiController.data.value.specification!
+                .where((e) => e.type == 'Warranty')
+                .first
+                .value
+                .toString(),
             style:
-                context.text.titleSmall!.copyWith(fontWeight: FontWeight.bold),
+                context.text.titleMedium!.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 10,
@@ -81,7 +95,7 @@ class _ProductIntroState extends State<ProductIntro> {
                 showValue: true,
                 starCount: 1,
               ),
-              const Text('  (5,789) reviews')
+              Text('  ${apiController.data.value.viewCount ?? 109} reviews')
             ],
           ),
           const DividerWid()
