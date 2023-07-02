@@ -1,4 +1,3 @@
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:softbenz_infosys/configs/extensions.dart';
 import 'package:softbenz_infosys/controller/api_controller.dart';
 import 'package:softbenz_infosys/view/detaiil_page/widgets/widgets.dart';
@@ -26,10 +25,7 @@ class _DetailPageState extends State<DetailPage> {
       body: Obx(() {
         switch (apiController.resState.value) {
           case ResponseState.loading:
-            return const Center(
-              child: SpinKitPulsingGrid(
-                  color: Colors.black, boxShape: BoxShape.rectangle),
-            );
+            return const Loading();
           case ResponseState.error:
             return const Center(
               child: Text('Error'),
